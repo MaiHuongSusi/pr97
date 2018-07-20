@@ -25,7 +25,6 @@
 String classNameContent = "" ;
 String classNameContainer = "";
 String styleContent = "style='margin-top:  5px;'";
-User user = (User)session.getAttribute("user");
 if( user.getRoleId() == 3) {
 	classNameContent = "right_col";
 	classNameContainer = "container-fluid";

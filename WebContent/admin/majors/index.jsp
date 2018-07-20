@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>  
+<%@include file="/templates/inc/dashboard_trainee_trainer.jsp" %>  
 <script src="jquery.twbsPagination.min.js"></script>
 <script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 
@@ -10,7 +10,6 @@
 String classNameContent = "" ;
 String classNameContainer = "";
 String styleContent = "style=''";
-User user = (User)session.getAttribute("user");
 if( user.getRoleId() == 3) {
 	classNameContent = "right_col";
 	classNameContainer = "container-fluid";
@@ -73,7 +72,7 @@ if( user.getRoleId() == 3) {
 						  <%
 					  } else {
 						  %>
-				        	<div class="alert alert-success" id="testDiv1" style="margin-top:-20px;">
+				        	<div class="alert alert-success" id="testDiv1" style="margin-top:-20px;color:rgb(90, 115, 142);background-color: #dff0d8; border:1px solid white;font-size:14px;">
 						    	<strong> <%= msg%> </strong>
 						  	</div>
 						  <%
@@ -125,7 +124,7 @@ if( user.getRoleId() == 3) {
 <!-- Pagination -->
 	        <script type="text/javascript">
 	            $(function () {
-	                var pageSize = 5; 
+	                var pageSize = 10; 
 	                showPage = function (page) {
 	                    $(".contentPage").hide();
 	                    $(".contentPage").each(function (n) {
@@ -166,17 +165,17 @@ if( user.getRoleId() == 3) {
 	       
 <!-- Content -->
 		   <div class="card-body" style="height:auto;">
-		         <div class="table-responsive" style="overflow-x: inherit;">
+		         <div class="table-responsive" style="overflow-x: inherit;margin-top:20px;">
            			<form action="<%= request.getContextPath()%>/major/del"  method="post">
           				<div style="margin-left: -10px; margin-bottom: 5px;">
-            				<div style="float: left" >
-			            		<button style="border-color:white;width:auto; font-size:14px; height:auto; margin-bottom:10px; margin-left: 10px;"
-			            				type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major
+            				<div style="float: right;" >
+			            		<button style="padding-left:25px; padding-right:25px;border-color:white;width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;"
+			            				type="button" class="btn btn-round btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new major
 	            				</button>
 			        		</div>
-			            	<div style="float: left; margin-left: 15px;">
-			            		<input class="btn btn-danger" style="display: none; width:auto; margin-left: 10px; margin-bottom: 10px; font-size:16px; border:1px solid white;" 
-			            			   onclick="return confirm('Do you want to delete these majors?')" id="deleteall" type="submit" value="Delete majors">
+			            	<div style="float: right; ">
+			            		<input class="btn btn-round btn-danger" style="padding-left:25px; padding-right:25px;font-size:15px;display: none; width:auto; margin-left: 10px; margin-bottom: 10px; border:1px solid white;" 
+			            			   onclick="return confirm('Do you want to delete these majors?')" id="deleteall" type="submit" value="Delete major">
 			               	</div>
 		              		<div style="clear: both">
 		              		</div>
@@ -303,12 +302,12 @@ if( user.getRoleId() == 3) {
 
 </div>
 </div>
- <footer style="margin-left:230px; background:#EDEDED; padding:15px 20px; display:block;"> 
+ <footer style="background:#EDEDED; padding:15px 20px; display:block;"> 
           <div class="pull-right">
             Updated yesterday at 11:59 PM by Team A.
           </div>
           <div class="clearfix"></div>
-    </footer>
+</footer>
 
 
 

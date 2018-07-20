@@ -1,10 +1,12 @@
-
 <%@page import="model.bean.User"%>
 <%@page import="model.bean.Roles"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@include file="/templates/inc/dashboard.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/templates/inc/dashboard.jsp" %>  
+<script src="jquery.twbsPagination.min.js"></script>
+<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+
 <style>
 	#add-post .required:after {
 	  content:"*";color:red;
@@ -22,21 +24,20 @@
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
-User user = (User)session.getAttribute("user");
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
-	classNameContent = "content-wrapper py-3";
+	classNameContent = "right_col";
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
+<div class="<%= classNameContent%>" <%= styleContent%> style="background: white;">
   <div class="<%= classNameContainer%>">
-        <div class="card mb-3">
-             <div class="alert alert-primary" style="font-size: larger;margin-bottom: 0px;"> 
-             <i class="fa fa-fw fa-user" ></i>
-			    <strong>Add New Trainee's Account</strong>
+        <div class="card mb-3" style="min-height:954px;">
+             <div class="alert alert-primary" style="margin-left:-18px; margin-top:60px;"> 
+             <i class="fa fa-fw fa-user" style="font-size:19px; margin-bottom:5px;" ></i>
+			    <strong style="font-size:20px; color:rgb(90, 115, 142)">Add New Trainee's Account</strong>
 			  </div>
 			  
 			  <div>
@@ -50,7 +51,7 @@ if( user.getRoleId() == 3) {
 				}
 			  	%>
 			  </div>
-  
+  			<div style="padding:30px 30px; border:1px solid rgb(210, 209, 208);border-radius:5px;">
              <form id="add-post" action="<%= request.getContextPath()%>/trainee/add" method="POST" enctype="multipart/form-data" >
               	<div style="height: 5%"></div>
               
@@ -61,7 +62,7 @@ if( user.getRoleId() == 3) {
 	              	</div>
 	              	
 	              	<div class="form-group" class="col-sm-4" style="float: left">
-		              	<label >Avatar <em style="color: red">(jpg, png, gif)</em> </label>
+		              	<label style="margin-top:19px;font-size:15px;">Avatar <em style="color: red">(jpg, png, gif)</em> </label>
 	    				<img id="blah" src="#" alt="" />
 	    				<script type="text/javascript">
 	    				function readURL(input) {
@@ -84,17 +85,17 @@ if( user.getRoleId() == 3) {
               	</div>
               
               	<div class="form-group">
-	              	<label class="required" >Username</label>&nbsp;<span id="spnNameStatus"></span>
+	              	<label class="required" font-size:15px;>Username</label>&nbsp;<span id="spnNameStatus"></span>
 	              	<input class="form-control" id="txtName" type="text" name="username" value="<%= trainee.getUsername()%>" placeholder="Username" />
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Password</label>&nbsp;<span id="spnPassStatus"></span>
+	              	<label class="required" font-size:15px; >Password</label>&nbsp;<span id="spnPassStatus"></span>
 	              	<input class="form-control" id="txtPassword" type="password" name="password" value="" placeholder="Password" />
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Fullname</label>&nbsp;<span id="spnFullNameStatus"></span>
+	              	<label class="required" font-size:15px;>Fullname</label>&nbsp;<span id="spnFullNameStatus"></span>
 	              	<input class="form-control" id="txtFullname" type="text" name="fullname" value="<%= trainee.getFullname()%>" placeholder="Fullname" />
               	</div>
               	
@@ -104,30 +105,30 @@ if( user.getRoleId() == 3) {
               <div class="col-sm-6" style="float: right">
               	
               	
-              	<div class="form-group">
-	              	  <label class="required" >Gender</label> <br>
-					  <input type="radio" name="gender" value="0" checked> Female <br>
-					  <input type="radio" name="gender" value="1" >  Male <br>
-					  <input type="radio" name="gender" value="2" > Other
+              	<div class="form-group" style="margin-top:16px;">
+	              	  <label class="required" style="font-size:15px;">Gender</label> <br>
+					  <input type="radio" name="gender" value="0" style="font-size:15px;" checked> Female <br>
+					  <input type="radio" name="gender" value="1" style="font-size:15px;">  Male <br>
+					  <input type="radio" name="gender" value="2" style="font-size:15px;" > Other
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Address</label>&nbsp;<span id="spnAddressStatus"></span>
+	              	<label class="required" font-size:15px;>Address</label>&nbsp;<span id="spnAddressStatus"></span>
 	              	<input class="form-control" id="txtAddress" type="text" name="address" value="<%= trainee.getAddress()%>" placeholder="Address" />
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Phone</label>&nbsp;<span id="spnPhoneStatus"></span>
+	              	<label class="required" font-size:15px;>Phone</label>&nbsp;<span id="spnPhoneStatus"></span>
 	              	<input class="form-control" id="txtPhone" type="text" name="phone" value="<%= trainee.getPhone()%>" placeholder="Phone" />
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Birthday</label>
+	              	<label class="required" font-size:15px;>Birthday</label>
 	              	<input class="form-control" id="txtBirthday" type="date" name="dateOfBirth" value="<%=  trainee.getDateOfBirth()%>" placeholder="Birthday" />
               	</div>
               	
               	<div class="form-group">
-	              	<label class="required" >Email</label>&nbsp;<span id="spnEmailStatus"></span>
+	              	<label class="required" font-size:15px;>Email</label>&nbsp;<span id="spnEmailStatus"></span>
 	              	<input class="form-control" id="txtEmail" type="text" name="email" value="<%= trainee.getEmail()%>" placeholder="Email" />
               	</div>
               	
@@ -137,16 +138,13 @@ if( user.getRoleId() == 3) {
               <div class="error" ></div>
         
 	           	<div style="text-align:center;margin-top:15px;">
-	           		<input id="btnSubmit" class="btn btn-primary" style="height: 40px; width:100px; font-size: 17px;" type="submit" name="submit" value="Add" />
-	           		<input class="btn btn-secondary" style="height: 40px; width:100px; font-size: 17px; border:1px solid white;" type="reset" name="reset" value="Reset" />
+	           		<input id="btnSubmit" class="btn btn-round btn-primary" style="width:100px; font-size: 15px; " type="submit" name="submit" value="Add" />
+	           		<input class="btn btn-round btn-default" style="width:100px; font-size: 15px; border:1px solid rgb(210, 209, 208);" type="reset" name="reset" value="Reset" />
 	           		
 	           	</div> 
              <div style="clear: both"></div>
-          
-              
-              <div style="margin-bottom: 5%"></div>
               </form> 
-
+			
             <script type="text/javascript">
       				$(document).ready(function() {
       					$("#add-post").validate({
@@ -370,11 +368,13 @@ if( user.getRoleId() == 3) {
       					return $.trim(pass).match(pattern) ? true : false;
       				}
       			</script>
-      			
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
-        </div>
+      		</div>
           </div>
         </div>
       </div>
-<%@include file="/templates/inc/footer.jsp" %> 
+      <footer style="background:#EDEDED; padding:15px 20px; display:block;"> 
+          <div class="pull-right">
+            Updated yesterday at 11:59 PM by Team A.
+          </div>
+          <div class="clearfix"></div>
+    </footer>

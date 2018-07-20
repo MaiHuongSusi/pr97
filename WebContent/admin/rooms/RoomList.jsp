@@ -11,7 +11,6 @@
 String classNameContent = "" ;
 String classNameContainer = "";
 String styleContent = "style=''";
-User user = (User)session.getAttribute("user");
 if( user.getRoleId() == 3) {
 	classNameContent = "right_col";
 	classNameContainer = "container-fluid";
@@ -86,8 +85,8 @@ if( user.getRoleId() == 3) {
           <div class="table-responsive" style="overflow-x: inherit;">
                 <div style="margin-left: -15px; margin-bottom: 5px;">
 	            	<div style="float: left" >
-	            	<button style="border-color:white;width:auto; font-size:14px; height:auto; margin-bottom:10px; margin-left: 14px;"
-	            	type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
+	            	<button style=";border-color:white;width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 14px;"
+	            	type="button" class="btn btn-round btn-primary" data-toggle="modal" data-target="#addModal" role="button">Add new room</button>
 	        		</div>
 	            	<div style="float: left; margin-left: 15px;">
 	            	<input class="btn btn-danger" style="display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these rooms?')" id="deleteall" type="submit" value="Delete rooms">
@@ -343,7 +342,7 @@ if( user.getRoleId() == 3) {
         
        </div>  
       </div>
- <footer style="margin-left:230px; background:#EDEDED; padding:15px 20px; display:block;"> 
+ <footer style=" background:#EDEDED; padding:15px 20px; display:block;"> 
           <div class="pull-right">
             Updated yesterday at 11:59 PM by Team A.
           </div>

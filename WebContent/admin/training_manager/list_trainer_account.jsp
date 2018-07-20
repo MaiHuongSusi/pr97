@@ -1,36 +1,28 @@
-
-<%@page import="java.util.List"%>
 <%@page import="model.bean.User"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/templates/inc/dashboard.jsp" %>  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleIndexTrainee.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.twbsPagination.min.js"></script>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" /> -->
-<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
-        <!-- JS tạo nút bấm di chuyển trang start -->
-<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
+<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+
 <%
 String classNameContent = "" ;
 String classNameContainer = "";
-String styleContent = "style='margin-top:  5px;'";
-User user = (User)session.getAttribute("user");
+String styleContent = "style=''";
 if( user.getRoleId() == 3) {
-	classNameContent = "content-wrapper py-3";
+	classNameContent = "right_col";
 	classNameContainer = "container-fluid";
 	styleContent = "";
 }
 
 %>
-<div class="<%= classNameContent%>" <%= styleContent%>>
+<div class="<%= classNameContent%>" <%= styleContent%> style="background:white;">
   <div class="<%= classNameContainer%>">
-    <div class="card mb-3">
-        <div class="alert alert-primary" style="font-size: larger;margin-bottom: 5px;"> 
-             <i class="fa fa-fw fa-users" ></i>
-		    <strong>Trainers</strong>
+    <div class="card mb-3" style="min-height:954px;">
+        <div class="alert alert-primary" style="margin-left:-18px; margin-top:60px;"> 
+             <i class="fa fa-fw fa-users" style="font-size:17px; margin-bottom:5px;"></i>
+		    <strong style="font-size:20px; color:rgb(90, 115, 142)">Trainers</strong>
 		  </div>
 		<div> 
 	  <%
@@ -62,13 +54,13 @@ if( user.getRoleId() == 3) {
 		  }
 		   if( check == false){
 		  %>
-        	<div class="alert alert-danger">
+        	<div class="alert alert-danger" id="testDiv" style="margin-top:-20px;">
 		    	<strong> <%= msg%> </strong>
 		  	</div>
 		  <%
 		  } else {
 			  %>
-	        	<div class="alert alert-success">
+	        	<div class="alert alert-success" id="testDiv1" style="margin-top:-20px;">
 			    	<strong> <%= msg%> </strong>
 			  	</div>
 			  <%
@@ -117,7 +109,7 @@ if( user.getRoleId() == 3) {
         
         <script type="text/javascript">
             $(function () {
-                var pageSize = 5; // Hiển thị 10 sản phẩm trên 1 trang
+                var pageSize = 10; // Hiển thị 10 sản phẩm trên 1 trang
                 showPage = function (page) {
                     $(".contentPage").hide();
                     $(".contentPage").each(function (n) {
@@ -153,29 +145,30 @@ if( user.getRoleId() == 3) {
                 -webkit-justify-content: center;
             }
         </style>
-        <div class="card-body">
-          <div class="table-responsive">
+        <div class="card-body" style="height:auto;">
+          <div class="table-responsive" style="overflow-x: inherit;margin-top:20px;">
             <form action=""  method="post">
-                <div style="margin-left: -15px; margin-bottom: 5px;">
-	            	<div style="float: left" >
-	            	<a style="width:auto; font-size:medium; height:auto; margin-bottom:10px; margin-left: 14px; " class="btn btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
+                <div style="margin-left: -10px; margin-bottom: 5px;">
+	            	<div style="float: right" >
+	            	<a style="padding-left:25px; padding-right:25px;border-color:white;width:auto; font-size:15px; height:auto; margin-bottom:10px; margin-left: 10px;" class="btn btn-round btn-primary" href="<%=request.getContextPath() %>/trainer/add" role="button">Add new trainer's account</a>
 	        		</div>
-	            	<div style="float: left; margin-left: 15px;">
-	            	<input class="btn btn-danger" style="font-size:medium; display: none; margin-left: 10px; margin-bottom: 5px;" onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainers">
+	            	<div style="float: right;">
+	            	<input class="btn btn-round btn-danger" style="padding-left:25px; padding-right:25px;font-size:15px;display: none; width:auto; margin-left: 10px; margin-bottom: 10px; border:1px solid white;"  onclick="return confirm('Do you want to delete these trainers?')" id="deleteall" type="submit" value="Delete trainer">
                 	</div>
                 	<div style="clear: both"></div>
 	        	</div><table  id="myTable" class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
                   <thead>
                     <tr>
-                      <th style="text-align: center; vertical-align: middle;">DeleteAll<input style="display: inline-block; margin-left: 15px;" type="checkbox" class="checkall"></th>
-                      <th style="text-align: center; vertical-align: middle;">Avatar</th>
-                      <th style="text-align: center; vertical-align: middle;">UserName</th>
-                      <th style="text-align: center; vertical-align: middle;">FullName</th>
-                      <th style="text-align: center; vertical-align: middle;">Email</th>
-                      <th style="text-align: center; vertical-align: middle;">Phone</th>
-                      <th style="text-align: center; vertical-align: middle;">Address</th>
-                      <th style="text-align: center; vertical-align: middle;">Status</th>
-                      <th style="text-align: center; vertical-align: middle;">Action</th>
+                      <th style="text-align: center; vertical-align: middle; font-size:medium;">Delete All
+                      <input style="display: inline-block; margin-left: 15px; margin-top:-3px; vertical-align:middle;" type="checkbox" class="checkall"></th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">Avatar</th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">User Name</th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">Full Name</th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">Email</th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">Phone</th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">Address</th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">Status</th>
+                      <th style="text-align: center; vertical-align: middle;font-size:medium;">Action</th>
                     </tr>
                   </thead>
                   <tbody >
@@ -183,13 +176,13 @@ if( user.getRoleId() == 3) {
                   	for(User trainer : trainers){
                   %>	
                   	<tr class="contentPage">
-                      	<td style="text-align: center; vertical-align: middle;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
-                      	<td style="text-align: center; vertical-align: middle;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
-                     	<td style="text-align: center; vertical-align: middle;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getFullname() %></td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getEmail()%></td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getPhone()%></td>
-	                    <td style="text-align: center; vertical-align: middle;"><%= trainer.getAddress() %></td>
+                      	<td style="text-align: center; vertical-align: middle;font-size:15px;"> <input type="checkbox" name="trainee<%= trainer.getUserId()%>" value="" class="checkitem" id="chkitem"> </td>
+                      	<td style="text-align: center; vertical-align: middle;font-size:15px;max-width:200px;max-height:100px;"><img alt="<%= trainer.getUsername()%>" src="<%=  request.getContextPath()%>/files/<%= trainer.getAvatar()%>"  class="img-circle" width="60%" height="100%"></td>
+                     	<td style="text-align: center; vertical-align: middle; font-size:15px;"> <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><%= trainer.getUsername()%></a> </td>
+	                    <td style="text-align: center; vertical-align: middle;font-size:15px;"><%= trainer.getFullname() %></td>
+	                    <td style="text-align: center; vertical-align: middle;font-size:15px;"><%= trainer.getEmail()%></td>
+	                    <td style="text-align: center; vertical-align: middle;font-size:15px;"><%= trainer.getPhone()%></td>
+	                    <td style="text-align: center; vertical-align: middle;font-size:15px;"><%= trainer.getAddress() %></td>
 	                    <%
 	                    if (trainer.getStatus() == 1){
 	                    	%>	
@@ -202,8 +195,8 @@ if( user.getRoleId() == 3) {
 	                    }
 	                    %>
 	                    <td   style="text-align: center; vertical-align: middle;">
-                        <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a  class="iconDel" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69)"></i></a>
+                        <a href="<%= request.getContextPath()%>/trainer/edit?id=<%= trainer.getUserId()%>"><i class="fa fa-edit" style="font-size:20px; vertical-align:middle; margin-top:2px;"></i></a>
+                        <a  class="iconDel" href="<%= request.getContextPath()%>/trainer/del?id=<%= trainer.getUserId()%>" onclick="return confirm('Do you want to delete trainer : <%= trainer.getUsername()%>?')"><i class="fa fa-trash" style="font-size:20px;color:rgb(220, 53, 69); vertical-align:middle; margin-left:10px;"></i></a>
                      	</td>
                     </tr>
                   <%	
@@ -212,16 +205,19 @@ if( user.getRoleId() == 3) {
                   </tbody>
                 </table>
                 
-                <div id="pager">
-					<ul id="pagination" class="pagination-sm"></ul>
-				</div>
+                <div id="pager" style="float: left; margin-top:-25px;">
+						<ul id="pagination" class="pagination-sm"></ul>
+					</div>
             </form>
           </div>
-        </div>
-        <div class="card-footer small text-muted">
-          Updated yesterday at 11:59 PM
         </div>
       </div>
     </div>
   </div>
-<%@include file="/templates/inc/footer.jsp" %> 
+</div>
+ <footer style="background:#EDEDED; padding:15px 20px; display:block;"> 
+          <div class="pull-right">
+            Updated yesterday at 11:59 PM by Team A.
+          </div>
+          <div class="clearfix"></div>
+    </footer>

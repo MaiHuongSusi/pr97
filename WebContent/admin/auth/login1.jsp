@@ -7,7 +7,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Login</title>
 		<link rel="shortcut icon" type="image/x-icon" href="<%= request.getContextPath()%>/templates/images/login_icon.png" />
-		<link rel="stylesheet"  type="text/css" href="<%= request.getContextPath()%>/templates/css/bootstrap.min.css">
+		<link rel="stylesheet"  type="text/css" href="<%= request.getContextPath()%>/templates/css/custom.min.css">
+		<!-- Bootstrap -->
+    <link href="<%= request.getContextPath()%>/templates/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="<%= request.getContextPath()%>/templates/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="<%= request.getContextPath()%>/templates/css/custom.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+  	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+  	<link href="<%= request.getContextPath()%>/templates/js/custom.min.js" rel="stylesheet">
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/templates/css/styleLogin1.css">
 	</head>
 	
@@ -21,7 +32,7 @@
 	                <div>
 	                    <form class="formLogin form-group" action="<%= request.getContextPath()%>/login" method="post" name="Login_Form" id="login_form">
 	                        <div class="divForm">
-	                             <label id="nameForm" class="nameForm">MANAGEMENT SYSTEM</label>
+	                             <label id="nameForm" class="nameForm">BOOTCAMP MANAGEMENT SYSTEM</label>
 	                        </div>
 	                        <div class="divEmail">
 	                            <input type="email" name="email" class="inputEmail" id="txtemail" placeholder="Email">
@@ -31,7 +42,7 @@
 	                            <input type="password" name="password" class="inputPassword" id="txtpassword" placeholder="Password">
 	                            <span id="spnPassStatus"></span>
 	                        </div>
-	                        <div class="button">
+	                        <div class="button" style="background:transparent; border-top:none; box-shadow:none;">
 	                            <input type="submit" class="btnLogIn" value="LOG IN">
 	                        </div>
 	                        <div class="divForgot">

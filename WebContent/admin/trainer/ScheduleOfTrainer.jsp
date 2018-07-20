@@ -26,7 +26,6 @@
 String classNameContent = "" ;
 String classNameContainer = "";
 String styleContent = "style='margin-top:  5px;'";
-User user = (User)session.getAttribute("user");
 if( user.getRoleId() == 3) {
 	classNameContent = "content-wrapper py-3";
 	classNameContainer = "container-fluid";

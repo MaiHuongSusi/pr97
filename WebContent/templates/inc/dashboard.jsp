@@ -9,19 +9,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="<%= request.getContextPath()%>/templates/images/favicon.ico" type="image/ico" />
-
+  	<link rel="icon" href="<%= request.getContextPath()%>/templates/images/logo.png" type="image/ico" />
     <title>Bootcamp Management System</title>
-	
-    <!-- Bootstrap -->
     <link href="<%= request.getContextPath()%>/templates/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link href="<%= request.getContextPath()%>/templates/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
     <link href="<%= request.getContextPath()%>/templates/css/custom.min.css" rel="stylesheet">
   	<script src="<%= request.getContextPath()%>/templates/vendor/jquery/dist/jquery.min.js"></script>
   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
   	<link rel="stylesheet prefetch" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
   	<script src="https://code.jquery.com/jquery-3.2.1.js" ></script>
   	<script src="http://1892.yn.lt/blogger/JQuery/Pagging/js/jquery.twbsPagination.js" type="text/javascript"></script>
@@ -29,26 +23,31 @@
   	<link href="<%= request.getContextPath()%>/templates/js/custom.min.js" rel="stylesheet">
   </head>
 
-  <body class="nav-md">
-
+  <body class="nav-md" style="">
+	<% User user = (User)session.getAttribute("user"); %>
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+          <div class="left_col scroll-view" style="">
+            <div class="navbar nav_title" style="height:59px;border: 0; background:rgb(237, 237, 237);border-bottom: 1px solid #D9DEE4;border-right: 1px solid rgb(213, 212, 208);">
+              <a href="index.html" class="site_title">
+              	<i class="" style="border:none;">
+		        	<img src="<%= request.getContextPath()%>/templates/images/logo.png" style="border:none; height:43px; margin-top:-7px;"/>
+              	</i> 
+              	<img src="<%= request.getContextPath()%>/templates/images/logo2.png" style="border:none; height:46px; margin-top:0px; margin-left:-11px;"/>
+              </a>
             </div>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <div class="profile clearfix">
+            <div class="profile clearfix" style="">
               <div class="profile_pic">
                 <img src="<%= request.getContextPath()%>/templates/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2><%= user.getUsername()%></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -89,29 +88,28 @@
                   </li>
                   
                   <li><a class="" href="#statistical"><i class="fa fa-bar-chart-o"></i> Statistic <span class="fa fa-chevron-down"></span></a>
-                    <ul class="sidenav-second-level collapse" id="statistical">
+                    <ul class="nav child_menu" id="statistical">
                       <li><a style="color:white; font-size:12px; padding:9px; font-weight:500; position:relative; display:block;" href="<%= request.getContextPath()%>/statistical/trainee">Trainees</a></li>
                       <li><a style="color:white; font-size:12px; padding:9px; font-weight:500; position:relative; display:block;"  href="<%= request.getContextPath()%>/statistical/result">Class's Quality</a></li>
                     </ul>
                   </li>
                 </ul>
-
-              </div>
+			  </div>
             </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
+            <div class="sidebar-footer hidden-small" style="">
+              <a data-toggle="tooltip" data-placement="top" title="Settings" style="">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen" style="">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <a data-toggle="tooltip" data-placement="top" title="Lock" style="">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="<%=request.getContextPath()%>/login" style="">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -130,19 +128,12 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="<%=request.getContextPath()%>/files/<%= user.getAvatar()%>" alt="<%= user.getUsername()%>" ><%= user.getUsername()%>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="<%=request.getContextPath()%>/login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -152,88 +143,10 @@
                     <span class="badge bg-green">6</span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
                   </ul>
-                </li>
-              </ul>
             </nav>
           </div>
-        </div>
-        <!-- /top navigation -->
-<!-- 
-     page content
-        <div class="right_col" role="main">
-          <div class="row">
-          Hello everybody!
-          </div>
         </div>  
-        
-        /page content
-
-        footer content
-         <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        /footer content
-      </div> -->
     </div>
 
     <!-- jQuery -->
